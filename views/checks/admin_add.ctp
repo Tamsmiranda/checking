@@ -60,7 +60,7 @@
 <?php echo $this->Form->create('Check');?>
 	<fieldset>
 	<?php
-		echo $this->Form->input('title');
+		echo $this->Form->input('campaign_id');
 		echo $this->Form->input('publish_date');
 		echo $this->Form->input('expiration_date');
 		echo $this->Form->input('resume');
