@@ -1,5 +1,5 @@
 <?php
-/* Advertiser Fixture generated on: 2012-06-07 19:28:31 : 1339097311 */
+/* Advertiser Fixture generated on: 2012-06-07 20:29:50 : 1339100990 */
 class AdvertiserFixture extends CakeTestFixture {
 	var $name = 'Advertiser';
 
@@ -13,7 +13,7 @@ class AdvertiserFixture extends CakeTestFixture {
 
 	var $records = array(
 		array(
-			'id' => '4fd100df-0d44-4e50-a4c0-0608737253ea',
+			'id' => '4fd10f3e-49d0-470e-8cf6-0fec737253ea',
 			'name' => 'Lorem ipsum dolor sit amet',
 			'description' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.'
 		),

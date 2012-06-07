@@ -11,6 +11,11 @@
 			<?php echo $campaign['Campaign']['name']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Advertiser'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($campaign['Advertiser']['name'], array('controller' => 'advertisers', 'action' => 'view', $campaign['Advertiser']['id'])); ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $campaign['Campaign']['description']; ?>
@@ -25,6 +30,8 @@
 		<li><?php echo $this->Html->link(__('Delete Campaign', true), array('action' => 'delete', $campaign['Campaign']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $campaign['Campaign']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Campaigns', true), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Campaign', true), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Advertisers', true), array('controller' => 'advertisers', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Advertiser', true), array('controller' => 'advertisers', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Checks', true), array('controller' => 'checks', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Check', true), array('controller' => 'checks', 'action' => 'add')); ?> </li>
 	</ul>

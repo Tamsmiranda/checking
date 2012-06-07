@@ -4,6 +4,7 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
+			<th><?php echo $this->Paginator->sort('advertiser_id');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
@@ -18,6 +19,9 @@
 	<tr<?php echo $class;?>>
 		<td><?php echo $campaign['Campaign']['id']; ?>&nbsp;</td>
 		<td><?php echo $campaign['Campaign']['name']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($campaign['Advertiser']['name'], array('controller' => 'advertisers', 'action' => 'view', $campaign['Advertiser']['id'])); ?>
+		</td>
 		<td><?php echo $campaign['Campaign']['description']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $campaign['Campaign']['id'])); ?>
@@ -45,6 +49,8 @@
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Campaign', true), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Advertisers', true), array('controller' => 'advertisers', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Advertiser', true), array('controller' => 'advertisers', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Checks', true), array('controller' => 'checks', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Check', true), array('controller' => 'checks', 'action' => 'add')); ?> </li>
 	</ul>

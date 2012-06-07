@@ -66,7 +66,6 @@
 		echo $this->Form->input('resume');
 		echo $this->Form->input('content');
 		echo $this->Form->input('observation');
-		echo $this->Form->input('advertiser_id');
 		echo $this->Form->input('created_by', array('type'=>'hidden'));
 		echo $this->Form->input('modified_by', array('type'=>'hidden'));
 		echo $this->Form->input('customer_id');

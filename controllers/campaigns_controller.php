@@ -26,6 +26,8 @@ class CampaignsController extends CheckingAppController {
 				$this->Session->setFlash(__('The campaign could not be saved. Please, try again.', true));
 			}
 		}
+		$advertisers = $this->Campaign->Advertiser->find('list');
+		$this->set(compact('advertisers'));
 	}
 
 	function edit($id = null) {
@@ -44,6 +46,8 @@ class CampaignsController extends CheckingAppController {
 		if (empty($this->data)) {
 			$this->data = $this->Campaign->read(null, $id);
 		}
+		$advertisers = $this->Campaign->Advertiser->find('list');
+		$this->set(compact('advertisers'));
 	}
 
 	function delete($id = null) {
@@ -81,6 +85,8 @@ class CampaignsController extends CheckingAppController {
 				$this->Session->setFlash(__('The campaign could not be saved. Please, try again.', true));
 			}
 		}
+		$advertisers = $this->Campaign->Advertiser->find('list');
+		$this->set(compact('advertisers'));
 	}
 
 	function admin_edit($id = null) {
@@ -99,6 +105,8 @@ class CampaignsController extends CheckingAppController {
 		if (empty($this->data)) {
 			$this->data = $this->Campaign->read(null, $id);
 		}
+		$advertisers = $this->Campaign->Advertiser->find('list');
+		$this->set(compact('advertisers'));
 	}
 
 	function admin_delete($id = null) {

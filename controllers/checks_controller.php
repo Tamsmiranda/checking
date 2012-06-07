@@ -91,12 +91,11 @@ class ChecksController extends CheckingAppController {
 				$this->Session->setFlash(__('The check could not be saved. Please, try again.', true));
 			}
 		}
-		$advertisers = $this->Check->Advertiser->find('list');
 		$customers = $this->Check->Customer->find('list');
 		$publisherTypes = $this->Check->PublisherType->find('list');
 		$publishers = $this->Check->Publisher->find('list');
 		$sections = $this->Check->Section->find('list');
-		$this->set(compact('customers', 'publisherTypes', 'publishers', 'sections', 'advertisers'));
+		$this->set(compact('customers', 'publisherTypes', 'publishers', 'sections'));
 	}
 
 	function admin_edit($id = null) {
