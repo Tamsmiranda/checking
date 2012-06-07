@@ -63,9 +63,9 @@
 		echo $this->Form->input('campaign_id');
 		echo $this->Form->input('publish_date');
 		echo $this->Form->input('expiration_date');
-		echo $this->Form->input('resume');
-		echo $this->Form->input('content');
-		echo $this->Form->input('observation');
+		echo $this->Form->input('resume', array('type'=>'hidden'));
+		echo $this->Form->input('content', array('type'=>'hidden'));
+		echo $this->Form->input('observation', array('type'=>'hidden'));
 		echo $this->Form->input('created_by', array('type'=>'hidden'));
 		echo $this->Form->input('modified_by', array('type'=>'hidden'));
 		echo $this->Form->input('customer_id');
