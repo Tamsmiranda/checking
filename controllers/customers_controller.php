@@ -1,5 +1,5 @@
 <?php
-class CustomersController extends ClippingAppController {
+class CustomersController extends CheckingAppController {
 
 	var $name = 'Customers';
 

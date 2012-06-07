@@ -1,5 +1,5 @@
 <?php
-class PublishersSection extends ClippingAppModel {
+class PublishersSection extends CheckingAppModel {
 	var $name = 'PublishersSection';
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

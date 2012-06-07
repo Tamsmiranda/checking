@@ -1,5 +1,5 @@
 <?php
-class Type extends ClippingAppModel {
+class Type extends CheckingAppModel {
 	var $name = 'Type';
 	var $displayField = 'title';
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

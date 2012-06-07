@@ -1,5 +1,5 @@
 <?php
-class SectionsController extends ClippingAppController {
+class SectionsController extends CheckingAppController {
 
 	var $name = 'Sections';
 	/*function admin_index() {

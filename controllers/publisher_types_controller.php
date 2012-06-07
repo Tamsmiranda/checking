@@ -1,5 +1,5 @@
 <?php
-class PublisherTypesController extends ClippingAppController {
+class PublisherTypesController extends CheckingAppController {
 
 	var $name = 'PublisherTypes';
 

@@ -1,5 +1,5 @@
 <?php
-class Publisher extends ClippingAppModel {
+class Publisher extends CheckingAppModel {
 	var $name = 'Publisher';
 	var $displayField = 'name';
 	var $actsAs = array('WhoDidIt');

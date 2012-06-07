@@ -1,5 +1,5 @@
 <?php
-class PublisherType extends ClippingAppModel {
+class PublisherType extends CheckingAppModel {
 	var $name = 'PublisherType';
 	var $displayField = 'name';
 	var $validate = array(

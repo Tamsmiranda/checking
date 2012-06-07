@@ -1,5 +1,5 @@
 <?php
-class Section extends ClippingAppModel {
+class Section extends CheckingAppModel {
 	var $name = 'Section';
 	var $displayField = 'name';
 	var $actsAs = array('WhoDidIt');
