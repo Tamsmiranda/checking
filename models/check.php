@@ -44,6 +44,13 @@ class Check extends CheckingAppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Advertiser' => array(
+			'className' => 'Advertiser',
+			'foreignKey' => 'advertiser_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 }
