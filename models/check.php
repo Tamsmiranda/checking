@@ -51,6 +51,13 @@ class Check extends CheckingAppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Campaign' => array(
+			'className' => 'Campaign',
+			'foreignKey' => 'campaign_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 }
