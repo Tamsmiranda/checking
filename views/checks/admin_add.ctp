@@ -105,8 +105,7 @@
 		</div>
 	<?php
 		echo $this->Html->link('', '', array('name' => 'jsonForm'));
-		?><input type="button" id="jsonAdd" value="add another name" /><?php
-		//echo $this->Html->link(__('Add', true), '#jsonForm', array('id' => 'jsonAdd', 'class' => 'button'));
+		echo $this->Form->button(__('Add', true),array('id' => 'jsonAdd', 'type' => 'button'));
 		echo $this->Form->input('resume', array('type'=>'hidden'));
 		echo $this->Form->input('content', array('type'=>'hidden'));
 		echo $this->Form->input('observation', array('type'=>'hidden'));
