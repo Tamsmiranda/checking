@@ -50,6 +50,8 @@
 			var type = $("#CheckPublisherTypeId").val();
 			updateEditors(type);
 	});
+	// Json form
+	productCount = 0;
 </script>
 <div class="checks form">
 <div class="actions">
@@ -64,6 +66,28 @@
 		echo $this->Form->input('campaign_id');
 		echo $this->Form->input('publish_date');
 		echo $this->Form->input('expiration_date');
+	?>
+		<div id="jsonDiv">
+	<?php
+		echo $this->Form->input('Json.0.product');
+		echo $this->Form->input('Json.0.price');
+		echo $this->Form->input('Json.0.unit');
+	?>
+		<script>
+		$(document).ready(function() {
+			$('#jsonAdd').click(function(){
+					productCount += 1;
+					oldForm = $('#jsonDiv').html();
+					oldForm += '<div id="json"><div class="input text"><label for="Json' + productCount + 'Product">Product</label><input type="text" id="Json' + productCount + 'Product" name="data[Json][' + productCount + '][product]"></div><div class="input text"><label for="Json' + productCount + 'Price">Price</label><input type="text" id="Json' + productCount + 'Price" name="data[Json][' + productCount + '][price]"></div><div class="input text"><label for="Json' + productCount + 'Unit">Unit</label><input type="text" id="Json' + productCount + 'Unit" name="data[Json][' + productCount + '][unit]"></div></div>';
+					$('#jsonDiv').html(oldForm);
+				}
+			);
+		});
+		</script>
+		</div>
+	<?php
+		echo $this->Html->link('', '', array('name' => 'jsonForm'));
+		echo $this->Html->link(__('Add', true), '#jsonForm', array('id' => 'jsonAdd', 'class' => 'button'));
 		echo $this->Form->input('resume', array('type'=>'hidden'));
 		echo $this->Form->input('content', array('type'=>'hidden'));
 		echo $this->Form->input('observation', array('type'=>'hidden'));
