@@ -53,5 +53,16 @@ class Check extends CheckingAppModel {
 			'order' => ''
 		)
 	);
+	
+	function afterFind($results) {
+		foreach ($results as $key => $val) {
+			if (isset($val['Check']['params'])) {
+				foreach (json_decode($val['Check']['params']) as $json) {
+					$results[$key]['Json'][] = (array) $json;
+				}
+			}
+		}
+		return $results;
+	}
 }
 ?>

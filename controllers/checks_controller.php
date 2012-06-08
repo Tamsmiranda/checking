@@ -68,6 +68,7 @@ class ChecksController extends CheckingAppController {
 		$this->Session->setFlash(__('Check was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
 	function admin_index() {
 		$this->Check->recursive = 0;
 		$this->set('checks', $this->paginate());
@@ -83,8 +84,6 @@ class ChecksController extends CheckingAppController {
 
 	function admin_add() {
 		if (!empty($this->data)) {
-			echo "<pre>";
-			print_r($this->data);exit;
 			$this->Check->create();
 			if ($this->Check->save($this->data)) {
 				$this->Session->setFlash(__('The check has been saved', true));
@@ -139,7 +138,7 @@ class ChecksController extends CheckingAppController {
 		$this->redirect(array('action' => 'index'));
 	}
 	
-	function beforeFilter(){
+	function beforeFilter() {
 		parent::beforeFilter();
 		if(isset($this->Security) && $this->action = 'admin_add'){
 			$this->Security->enabled = false; 
