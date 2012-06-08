@@ -140,7 +140,7 @@ class ChecksController extends CheckingAppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		if(isset($this->Security) && $this->action = 'admin_add'){
+		if(isset($this->Security) && $this->action == 'admin_add'){
 			$this->Security->enabled = false; 
 		}
 		if (!empty($this->data)) {
