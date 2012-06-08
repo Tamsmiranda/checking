@@ -95,9 +95,9 @@
 					$('#' + newElement + ' #Json0Quantity')
 						.attr('id','Json' + productCount + 'Quantity')
 						.attr('name', 'data[Json][' + productCount + '][quantity]');
-					$('#' + newElement + ' [for="Json0Unity"]')
-						.attr('for','Json' + productCount + 'Unity')
-						.attr('id','Json' + productCount + 'Unity');
+					$('#' + newElement + ' #Json0Unity')
+						.attr('id','Json' + productCount + 'Unity')
+						.attr('name', 'data[Json][' + productCount + '][unity]');
 				}
 			);
 		});

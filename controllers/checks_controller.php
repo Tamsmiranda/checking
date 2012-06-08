@@ -143,7 +143,20 @@ class ChecksController extends CheckingAppController {
 		parent::beforeFilter();
 		if(isset($this->Security) && $this->action = 'admin_add'){
 			$this->Security->enabled = false; 
+		}
+		if (!empty($this->data)) {
+			if (isset($this->data['Json'])) {
+				// Remove elementos vazios
+				foreach($this->data['Json'] as $key => $item) 
+				{ 
+					if($item['product'] == '') 
+					{ 
+						unset($this->data['Json'][$key]); 
+					} 
+				}
+				$this->data['Check']['params'] = json_encode($this->data['Json']);
+			}
+		}
 	}
-}
 }
 ?>
