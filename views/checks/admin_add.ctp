@@ -35,6 +35,16 @@
 		});
 	}
 	
+	function updateCampaigns(advertiser) {
+		$.ajax({
+			type:'POST',
+			url: '<?php echo $this->Html->url('/admin/checking/campaigns/index/');?>' + advertiser,
+			success: function(data) {
+			$("#CheckCampaignId").empty().append(data);
+			}
+		});
+	}
+	
 	$(document).ready(function() {
 			$("#CheckPublisherTypeId").bind('change',
 				function() {
@@ -47,8 +57,17 @@
 					var publisher = $(this).val();
 					updateSections(publisher);
 			});
+			
+			$("#CheckAdvertiserId").bind('change',
+				function() {
+					var advertiser = $(this).val();
+					updateCampaigns(advertiser);
+			});
+			
 			var type = $("#CheckPublisherTypeId").val();
 			updateEditors(type);
+			var advertiser = $("#CheckAdvertiserId").val();
+			updateCampaigns(advertiser)
 	});
 	// Json form
 	productCount = 0;

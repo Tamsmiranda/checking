@@ -3,17 +3,9 @@ class CampaignsController extends CheckingAppController {
 
 	var $name = 'Campaigns';
 
-	function index( $advertiser = null) {
+	function index() {
 		$this->Campaign->recursive = 0;
-		$conditions = empty($advertiser) ? array() : array('Campaign.advertiser_id'=>$advertiser);
-        if ( $this->RequestHandler->isAjax() ) {
-            $this->layout = 'ajax';
-            $campaigns = $this->Campaign->find('all',array('conditions'=>$conditions, 'order' => array('Campaign.name ASC')));
-            $this->set(compact('campaigns'));
-            $this->render('ajax_admin_index');
-        } else {
-			$this->set('campaigns', $this->paginate());
-		}
+		$this->set('campaigns', $this->paginate());
 	}
 
 	function view($id = null) {
@@ -70,9 +62,18 @@ class CampaignsController extends CheckingAppController {
 		$this->Session->setFlash(__('Campaign was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
-	function admin_index() {
+	
+	function admin_index( $advertiser = null) {
 		$this->Campaign->recursive = 0;
-		$this->set('campaigns', $this->paginate());
+		$conditions = empty($advertiser) ? array() : array('Campaign.advertiser_id'=>$advertiser);
+        if ( $this->RequestHandler->isAjax() ) {
+            $this->layout = 'ajax';
+            $campaigns = $this->Campaign->find('all',array('conditions'=>$conditions, 'order' => array('Campaign.name ASC')));
+            $this->set(compact('campaigns'));
+            $this->render('ajax_admin_index');
+        } else {
+			$this->set('campaigns', $this->paginate());
+		}
 	}
 
 	function admin_view($id = null) {
