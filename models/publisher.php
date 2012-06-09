@@ -2,7 +2,25 @@
 class Publisher extends CheckingAppModel {
 	var $name = 'Publisher';
 	var $displayField = 'name';
-	var $actsAs = array('WhoDidIt');
+	var $actsAs = array(
+		'WhoDidIt',
+		'MeioUpload.MeioUpload' => array(
+			'logo' => array(
+				'dir' => 'files{DS}publishers{DS}logos{DS}',
+				'create_directory' => true,
+				//'allowed_mime' => array('application/msword','application/excel','application/vnd.ms-excel','application/vnd.ms-powerpoint','application/zip','video/x-ms-wmv','video/x-flv',''),
+				//'allowed_ext' => array('.jpg', '.jpeg', '.png','.gif','.doc','.docx','.wmv','.flv','.mp4','.avi','.xls','.xlsx','.ppt','.pptx','.wav','.zip'),
+				'max_size' => '1024 mb',
+				/*'thumbsizes' => array(
+					'320x90' => array(
+                        'width' => 320,
+                        'height' => 90,
+						'forceAspectRatio' => 'C',
+                    )
+				),*/
+			)
+		)
+	);
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(

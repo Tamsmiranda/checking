@@ -7,12 +7,16 @@
 		<!--<li><?php //echo $this->Html->link(__('List Sections', true), array('controller' => 'sections', 'action' => 'index')); ?> </li>-->
 	</ul>
 </div>
-<?php echo $this->Form->create('Publisher');?>
+<?php echo $this->Form->create('Publisher', array('type' => 'file'));?>
 	<fieldset>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
 		echo $this->Form->input('publisher_type_id');
+		echo $this->Form->input('logo', array('type' => 'file'));
+		echo $this->Form->input('dir', array('type' => 'hidden'));
+		echo $this->Form->input('mimetype', array('type' => 'hidden'));
+		echo $this->Form->input('filesize', array('type' => 'hidden'));
 		//echo $this->Form->input('Section');
 	?>
 	</fieldset>
