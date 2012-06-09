@@ -3,9 +3,17 @@ class CampaignsController extends CheckingAppController {
 
 	var $name = 'Campaigns';
 
-	function index() {
+	function index( $advertiser = null) {
 		$this->Campaign->recursive = 0;
-		$this->set('campaigns', $this->paginate());
+		$conditions = empty($advertiser) ? array() : array('Campaign.advertiser_id'=>$advertiser);
+        if ( $this->RequestHandler->isAjax() ) {
+            $this->layout = 'ajax';
+            $campaigns = $this->Campaign->find('all',array('conditions'=>$conditions, 'order' => array('Campaign.name ASC')));
+            $this->set(compact('campaigns'));
+            $this->render('ajax_admin_index');
+        } else {
+			$this->set('campaigns', $this->paginate());
+		}
 	}
 
 	function view($id = null) {
