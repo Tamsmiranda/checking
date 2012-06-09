@@ -1,10 +1,14 @@
 <div class="advertisers form">
-<?php echo $this->Form->create('Advertiser');?>
+<?php echo $this->Form->create('Advertiser', array('type' => 'file'));?>
 	<fieldset>
 		<legend><?php __('Admin Add Advertiser'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
+		echo $this->Form->input('logo', array('type' => 'file'));
+		echo $this->Form->input('dir', array('type' => 'hidden'));
+		echo $this->Form->input('mimetype', array('type' => 'hidden'));
+		echo $this->Form->input('filesize', array('type' => 'hidden'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
