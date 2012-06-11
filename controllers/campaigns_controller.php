@@ -16,53 +16,6 @@ class CampaignsController extends CheckingAppController {
 		$this->set('campaign', $this->Campaign->read(null, $id));
 	}
 
-	function add() {
-		if (!empty($this->data)) {
-			$this->Campaign->create();
-			if ($this->Campaign->save($this->data)) {
-				$this->Session->setFlash(__('The campaign has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The campaign could not be saved. Please, try again.', true));
-			}
-		}
-		$advertisers = $this->Campaign->Advertiser->find('list');
-		$this->set(compact('advertisers'));
-	}
-
-	function edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid campaign', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		if (!empty($this->data)) {
-			if ($this->Campaign->save($this->data)) {
-				$this->Session->setFlash(__('The campaign has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The campaign could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this->data)) {
-			$this->data = $this->Campaign->read(null, $id);
-		}
-		$advertisers = $this->Campaign->Advertiser->find('list');
-		$this->set(compact('advertisers'));
-	}
-
-	function delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for campaign', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if ($this->Campaign->delete($id)) {
-			$this->Session->setFlash(__('Campaign deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->Session->setFlash(__('Campaign was not deleted', true));
-		$this->redirect(array('action' => 'index'));
-	}
-	
 	function admin_index( $advertiser = null) {
 		$this->Campaign->recursive = 0;
 		$conditions = empty($advertiser) ? array() : array('Campaign.advertiser_id'=>$advertiser);
