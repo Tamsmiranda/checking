@@ -1,15 +1,15 @@
-<script>
+ï»¿<script>
 	function updateEditors(type) {
 		// Impresso
 		if (type == '4e64fc9f-9c14-4d75-9f7b-1260737253ea') {
 			$('#obs').show('slow');
-			$('#obs_lbl').text('Páginas');
+			$('#obs_lbl').text('PÃ¡ginas');
 			$('#divTiragem').show('slow');
 			$('#divColumn').show('slow');
 		} else if (type == '4e64fcca-5014-4d13-b2fb-1260737253ea') {
 		// Tv
 			$('#obs').show('slow');
-			$('#obs_lbl').text('Duração');
+			$('#obs_lbl').text('DuraÃ§Ã£o');
 		} else {
 			$('#obs').hide('slow');
 			$('#divTiragem').hide('slow');
