@@ -21,7 +21,6 @@
 	<tr<?php echo $class;?>>
 		<td><?php echo $advertiser['Advertiser']['name']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $advertiser['Advertiser']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $advertiser['Advertiser']['id'])); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $advertiser['Advertiser']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $advertiser['Advertiser']['id'])); ?>
 		</td>
