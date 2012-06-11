@@ -1,4 +1,4 @@
-<div class="publishers form">
+﻿<div class="publishers form">
 	<h2><?php __('Add Publisher'); ?></h2>
 <div class="actions">
 	<ul>
