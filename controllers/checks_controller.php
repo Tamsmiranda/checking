@@ -2,6 +2,9 @@
 class ChecksController extends CheckingAppController {
 
 	var $name = 'Checks';
+	var $paginate = array(
+		'limit' => 100,
+	);
 
 	function index() {
 		$this->Check->recursive = 0;
