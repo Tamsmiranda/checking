@@ -1,4 +1,5 @@
-﻿<div class="checks index">
+﻿<?php echo $this->element('admin_search_form'); ?>
+<div class="checks index">
 	<h2><?php __('Checks');?></h2>
 	<div class="actions">
 		<ul>

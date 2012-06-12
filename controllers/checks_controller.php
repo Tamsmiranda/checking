@@ -74,7 +74,15 @@ class ChecksController extends CheckingAppController {
 	
 	function admin_index() {
 		$this->Check->recursive = 0;
-		$this->set('checks', $this->paginate());
+		$this->loadModel('Advertiser');
+		$advertisers = $this->Advertiser->find('list');
+		$campaigns = $this->Check->Campaign->find('list');
+		$customers = $this->Check->Customer->find('list');
+		$publisherTypes = $this->Check->PublisherType->find('list');
+		$publishers = $this->Check->Publisher->find('list');
+		$sections = $this->Check->Section->find('list');
+		$checks = $this->paginate();
+		$this->set(compact('checks', 'customers', 'publisherTypes', 'publishers', 'sections', 'campaigns', 'advertisers'));
 	}
 
 	function admin_view($id = null) {
