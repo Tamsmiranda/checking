@@ -85,6 +85,7 @@
 		echo $this->Form->input('campaign_id');
 		echo $this->Form->input('publish_date', array('dateFormat' => 'DMY', 'timeFormat' => '24'));
 		echo $this->Form->input('expiration_date', array('dateFormat' => 'DMY', 'timeFormat' => '24'));
+		echo $this->Form->input('location');
 	?>
 		<div id="jsonDiv">
 	<?php

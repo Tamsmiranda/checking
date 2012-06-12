@@ -7,12 +7,13 @@
 	</div>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('customer_id');?></th>
-			<th><?php echo $this->Paginator->sort('publisher_type_id');?></th>
-			<th><?php echo $this->Paginator->sort('publisher_id');?></th>
-			<th><?php echo $this->Paginator->sort('section_id');?></th>
-			<th><?php echo $this->Paginator->sort('publish_date');?></th>			
-			<th class="actions"><?php __('Actions');?></th>
+		<th><?php echo $this->Form->input('checkAll', array('type'=>'checkbox','label'=>false,'id'=>'checkAll'));?></th>
+		<th><?php echo $this->Paginator->sort('customer_id');?></th>
+		<th><?php echo $this->Paginator->sort('publisher_type_id');?></th>
+		<th><?php echo $this->Paginator->sort('publisher_id');?></th>
+		<th><?php echo $this->Paginator->sort('section_id');?></th>
+		<th><?php echo $this->Paginator->sort('publish_date');?></th>			
+		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -23,6 +24,7 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
+		<td><?php echo $this->Form->input($check['Check']['id'],array('type'=>'checkbox','label'=>false,'class'=>'checkbox'));?></td>
 		<td>
 			<?php echo $check['Customer']['name']; ?>
 		</td>
@@ -48,3 +50,15 @@
 	<div class="counter"><?php echo $paginator->counter(array('format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true))); ?></div>
 	</div>
 </div>
+<script>
+		$(document).ready(function() {
+			$("#checkAll").click(function()				
+			{
+				var checked_status = this.checked;
+				$(".checkbox").each(function()
+				{
+					this.checked = checked_status;
+				});
+			});					
+		});
+</script>
