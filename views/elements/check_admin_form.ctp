@@ -148,6 +148,11 @@
 		echo $this->Form->input('publisher_id');
 		echo $this->Form->input('section_id');
 		echo $this->Form->input('params', array('type'=>'hidden'));
+		// Arquivo
+		if ($this->data['Check']['file']) {
+			//Adicionar preview
+			//echo $this->Html->image($this->Html->url('/',true) . 'files/advertisers/logos/' . $this->data['Advertiser']['logo']);
+		}
 		echo $this->Form->input('file', array('type' => 'file'));
 		echo $this->Form->input('dir', array('type' => 'hidden'));
 		echo $this->Form->input('mimetype', array('type' => 'hidden'));
