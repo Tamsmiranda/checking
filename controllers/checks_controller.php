@@ -79,7 +79,10 @@ class ChecksController extends CheckingAppController {
 			$this->Session->setFlash(__('Invalid check', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->autoRender = false;
+		$this->Check->recursive = 0;
 		$this->set('check', $this->Check->read(null, $id));
+		$this->render('excel');
 	}
 
 	function admin_add() {
