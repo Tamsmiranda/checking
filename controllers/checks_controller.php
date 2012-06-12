@@ -2,6 +2,7 @@
 class ChecksController extends CheckingAppController {
 
 	var $name = 'Checks';
+	var $components = array('Email');
 	var $paginate = array(
 		'limit' => 100,
 	);
@@ -171,11 +172,103 @@ class ChecksController extends CheckingAppController {
 		$this->redirect(array('action' => 'index'));
 	}
 	
+	function send() {
+		$this->autoRender = false;
+		// Desenvolver isso a moda Ckaephp
+		if (!empty($_POST)) {
+			$checks = $_POST['id'];
+			$emails = $_POST['email'];
+		} else {
+			$this->Session->setFlash(__('Select a Check to send', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		
+		$checks = $this->Check->find('all', array(
+				'conditions' => array(
+				'Check.id' => $checks,
+			)
+		));
+		$this->set(compact('checks'));
+		if (!empty($checks)) {
+			$this->Email->to = preg_split("/,/",$emails);
+			$this->Email->subject = 'Checking Diário';
+			$this->Email->bcc = array('tamsmiranda@gmail.com');
+			$this->Email->replyTo = 'rttvclipping@uol.com.br';
+			$this->Email->from = 'RTTV Clipping <impresso@rttvclipping.com.br>';
+			$this->Email->template = 'check'; // note no '.ctp'
+			$this->Email->sendAs = 'html'; // because we like to send pretty mail
+			$this->Email->smtpOptions = array(
+					'port'=>'25',
+					'timeout'=>'60',
+					'host' => 'mail.tecla.com.br',
+					'username'=>'impresso@rttvclipping.com.br',
+					'password'=>'rttv1234',
+					);
+			$this->Email->delivery = 'smtp';
+				
+			$this->Email->delivery = 'debug';
+			if ( $this->Email->send() ) {
+				$this->Session->setFlash(__('Mail send sucessfull',true));
+			} else {
+				$this->Session->setFlash(__('Mail not send',true).'<br />'.$this->Email->smtpError);
+			}
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Session->setFlash(__('Mail not send',true).'<br />'.$this->Email->smtpError);
+		$this->redirect(array('action'=>'index'));
+	}
+	
+	function admin_send() {
+		$this->autoRender = false;
+		// Desenvolver isso a moda Ckaephp
+		if (!empty($_POST)) {
+			$checks = $_POST['id'];
+			$emails = $_POST['email'];
+		} else {
+			$this->Session->setFlash(__('Select a Check to send', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		
+		$checks = $this->Check->find('all', array(
+				'conditions' => array(
+				'Check.id' => $checks,
+			)
+		));
+		$this->set(compact('checks'));
+		if (!empty($checks)) {
+			$this->Email->to = preg_split("/,/",$emails);
+			$this->Email->subject = 'Checking Diário';
+			$this->Email->bcc = array('tamsmiranda@gmail.com');
+			$this->Email->replyTo = 'rttvclipping@uol.com.br';
+			$this->Email->from = 'RTTV Clipping <impresso@rttvclipping.com.br>';
+			$this->Email->template = 'check'; // note no '.ctp'
+			$this->Email->sendAs = 'html'; // because we like to send pretty mail
+			$this->Email->smtpOptions = array(
+					'port'=>'25',
+					'timeout'=>'60',
+					'host' => 'mail.tecla.com.br',
+					'username'=>'impresso@rttvclipping.com.br',
+					'password'=>'rttv1234',
+					);
+			$this->Email->delivery = 'smtp';
+				
+			$this->Email->delivery = 'debug';
+			if ( $this->Email->send() ) {
+				$this->Session->setFlash(__('Mail send sucessfull',true));
+			} else {
+				$this->Session->setFlash(__('Mail not send',true).'<br />'.$this->Email->smtpError);
+			}
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Session->setFlash(__('Mail not send',true).'<br />'.$this->Email->smtpError);
+		$this->redirect(array('action'=>'index'));
+	}
+	
 	function beforeFilter() {
 		parent::beforeFilter();
-		if(isset($this->Security) && $this->action == 'admin_add'){
+		//if(isset($this->Security) && $this->action == 'admin_add'){
 			$this->Security->enabled = false; 
-		}
+		//}
 		if (!empty($this->data)) {
 			if (isset($this->data['Json'])) {
 				// Remove elementos vazios

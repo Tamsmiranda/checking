@@ -1,9 +1,19 @@
-﻿<?php echo $this->element('admin_search_form'); ?>
+﻿<?php
+	//debug($this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'index')));
+	//exit;
+	?>
+<?php echo $this->element('admin_search_form'); ?>
+<div id="dialogEmail" title="<?php echo __('Send by E-mail', true);?>">
+	<?php echo $this->Form->input('email',array('class'=>'text ui-widget-content ui-corner-all'));?>
+</div>
 <div class="checks index">
 	<h2><?php __('Checks');?></h2>
 	<div class="actions">
 		<ul>
 			<li><?php echo $this->Html->link(__('New Check', true), array('action' => 'add')); ?></li>
+			<li><?php echo $this->Html->link(__('Send by E-mail', true), '#', array('id' => 'send')); ?></li>
+			<li><?php echo $this->Html->link(__('Export to Excel', true), '#', array('id' => 'excel')); ?></li>
+			<li><?php echo $this->Html->link(__('Export to PDF', true), '#', array('id' => 'pdf')); ?></li>
 		</ul>
 	</div>
 	<table cellpadding="0" cellspacing="0">
@@ -52,6 +62,17 @@
 	</div>
 </div>
 <script>
+		function selectedChecks() {
+			checks = Array();
+			$(".checkbox").each(function()
+				{
+					if ( this.checked == true) {
+						checks.push(this.id)
+					}
+				});
+			return checks;
+		}
+
 		$(document).ready(function() {
 			$("#checkAll").click(function()				
 			{
@@ -62,4 +83,25 @@
 				});
 			});					
 		});
+		$('#send').click(function(){
+			$( "#dialogEmail" ).dialog({
+				modal: true,
+				buttons: {
+					Ok: function() {
+						$.post("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'send'));?>", { id: selectedChecks(), email: $('#email').val}, function () { window.location.replace("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'index'));?>");});
+						$( this ).dialog( "close" );
+					},
+					Cancel: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		
+			/*
+			$.post(
+				"<?php echo $this->Html->url(array('plugin' => 'clipping', 'controller' => 'clipps', 'action' => 'send'));?>",
+				{email: "tamsmiranda@gmail.com"});*/
+			//$('#email').submit();
+		});
+
 </script>
