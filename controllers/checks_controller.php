@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 class ChecksController extends CheckingAppController {
 
 	var $name = 'Checks';
@@ -79,9 +79,14 @@ class ChecksController extends CheckingAppController {
 			$this->Session->setFlash(__('Invalid check', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->loadModel('Advertiser');
 		$this->autoRender = false;
+		$this->layout = 'ajax';
 		$this->Check->recursive = 0;
-		$this->set('check', $this->Check->read(null, $id));
+		$check = $this->Check->read(null, $id);
+		$advertiser = $this->Advertiser->read(null, $check['Check']['advertiser_id']);
+		$check = array_merge($check, $advertiser);
+		$this->set('check',$check);
 		$this->render('excel');
 	}
 
