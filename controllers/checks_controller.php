@@ -74,6 +74,17 @@ class ChecksController extends CheckingAppController {
 	
 	function admin_index() {
 		$this->Check->recursive = 0;
+		$conditions = array();
+		if (!empty($this->data)) {
+			//debug($this->data);exit;
+			$conditions[] = $this->data['Check']['advertiser_id'] ? array('Campaign.advertiser_id' => $this->data['Check']['advertiser_id']) : null;
+			$conditions[] = $this->data['Check']['campaign_id'] ? array('Check.campaign_id' => $this->data['Check']['campaign_id']) : null;
+			$conditions[] = $this->data['Check']['location'] ? array('Check.location' => $this->data['Check']['location']) : null;
+			$conditions[] = $this->data['Check']['customer_id'] ? array('Check.customer_id' => $this->data['Check']['customer_id']) : null;
+			$conditions[] = $this->data['Check']['publisher_type_id'] ? array('PublisherType.id' => $this->data['Check']['publisher_type_id']) : null;
+			$conditions[] = $this->data['Check']['publisher_id'] ? array('Check.publisher_id' => $this->data['Check']['publisher_id']) : null;
+			$conditions[] = $this->data['Check']['section_id'] ? array('Check.section_id' => $this->data['Check']['section_id']) : null;
+		}
 		$this->loadModel('Advertiser');
 		$advertisers = $this->Advertiser->find('list');
 		$campaigns = $this->Check->Campaign->find('list');
@@ -81,7 +92,7 @@ class ChecksController extends CheckingAppController {
 		$publisherTypes = $this->Check->PublisherType->find('list');
 		$publishers = $this->Check->Publisher->find('list');
 		$sections = $this->Check->Section->find('list');
-		$checks = $this->paginate();
+		$checks = $this->paginate($conditions);
 		$this->set(compact('checks', 'customers', 'publisherTypes', 'publishers', 'sections', 'campaigns', 'advertisers'));
 	}
 

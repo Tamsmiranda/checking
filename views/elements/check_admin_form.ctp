@@ -81,11 +81,11 @@
 <?php echo $this->Form->create('Check', array('type' => 'file'));?>
 	<fieldset>
 	<?php
-		echo $this->Form->input('advertiser_id');
-		echo $this->Form->input('campaign_id');
+		echo $this->Form->input('advertiser_id', array('empty'=>__('Select', true)));
+		echo $this->Form->input('campaign_id', array('empty'=>__('Select', true)));
 		echo $this->Form->input('publish_date', array('dateFormat' => 'DMY', 'timeFormat' => '24'));
 		echo $this->Form->input('expiration_date', array('dateFormat' => 'DMY', 'timeFormat' => '24'));
-		echo $this->Form->input('location');
+		echo $this->Form->input('location', array('empty'=>__('Select', true)));
 	?>
 		<div id="jsonDiv">
 	<?php
@@ -144,10 +144,10 @@
 		echo $this->Form->input('observation', array('type'=>'hidden'));
 		echo $this->Form->input('created_by', array('type'=>'hidden'));
 		echo $this->Form->input('modified_by', array('type'=>'hidden'));
-		echo $this->Form->input('customer_id');
-		echo $this->Form->input('publisher_type_id');
-		echo $this->Form->input('publisher_id');
-		echo $this->Form->input('section_id');
+		echo $this->Form->input('customer_id', array('empty'=>__('Select', true)));
+		echo $this->Form->input('publisher_type_id', array('empty'=>__('Select', true)));
+		echo $this->Form->input('publisher_id', array('empty'=>__('Select', true)));
+		echo $this->Form->input('section_id', array('empty'=>__('Select', true)));
 		echo $this->Form->input('params', array('type'=>'hidden'));
 		// Arquivo
 		if ($this->data['Check']['file']) {
