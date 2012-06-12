@@ -78,7 +78,7 @@
 		<li><?php echo $this->Html->link(__('List Checks', true), array('action' => 'index'));?></li>
 	</ul>
 </div>
-<?php echo $this->Form->create('Check');?>
+<?php echo $this->Form->create('Check', array('type' => 'file'));?>
 	<fieldset>
 	<?php
 		echo $this->Form->input('advertiser_id');
@@ -148,6 +148,10 @@
 		echo $this->Form->input('publisher_id');
 		echo $this->Form->input('section_id');
 		echo $this->Form->input('params', array('type'=>'hidden'));
+		echo $this->Form->input('file', array('type' => 'file'));
+		echo $this->Form->input('dir', array('type' => 'hidden'));
+		echo $this->Form->input('mimetype', array('type' => 'hidden'));
+		echo $this->Form->input('filesize', array('type' => 'hidden'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
