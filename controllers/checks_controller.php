@@ -234,6 +234,14 @@ class ChecksController extends CheckingAppController {
 				'Check.id' => $checks,
 			)
 		));
+		
+		$this->loadModel('Advertiser');
+		
+		foreach ($checks as $key => $check) {
+			$advertiser = $this->Advertiser->read(null, $check['Check']['advertiser_id']);
+			$checks[$key] = array_merge($check, $advertiser);
+		}
+		
 		$this->set(compact('checks'));
 		if (!empty($checks)) {
 			$this->Email->to = preg_split("/,/",$emails);
