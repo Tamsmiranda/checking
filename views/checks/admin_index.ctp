@@ -105,7 +105,7 @@
 		// Export to excel
 		$('#excel').click( function(){
 			params = $.param({ id : selectedChecks()});
-			window.location.replace("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'view'));?>?" + params);
+			window.location.replace("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'view'));?>/filetype:xls/?" + params);
 		});
 
 </script>
