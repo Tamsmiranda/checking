@@ -97,5 +97,15 @@
 		$('#send').click(function(){
 			$("#dialogEmail").dialog('open');
 		});
+		
+		// Export to excel
+		/*$('#excel').click(function(){
+			$.post("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'view'));?>", { id: selectedChecks()});
+		});*/
+		// Export to excel
+		$('#excel').click( function(){
+			params = $.param({ id : selectedChecks()});
+			window.location.replace("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'view'));?>?" + params);
+		});
 
 </script>

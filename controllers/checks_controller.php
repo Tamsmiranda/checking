@@ -98,19 +98,50 @@ class ChecksController extends CheckingAppController {
 	}
 
 	function admin_view($id = null) {
-		if (!$id) {
+		if (!$id && empty($_REQUEST)) {
 			$this->Session->setFlash(__('Invalid check', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->loadModel('Advertiser');
+		
+		if (!empty($_REQUEST)) {
+			$checks = $_REQUEST['id'];
+		} elseif (!$id) {
+			$this->Session->setFlash(__('Select a Check to send', true));
+			$this->redirect(array('action'=>'index'));
+		} else {
+			$checks = array($id);
+		}
+		
 		$this->autoRender = false;
-		$this->layout = 'ajax';
-		$this->Check->recursive = 0;
-		$check = $this->Check->read(null, $id);
-		$advertiser = $this->Advertiser->read(null, $check['Check']['advertiser_id']);
-		$check = array_merge($check, $advertiser);
-		$this->set('check',$check);
-		$this->render('excel');
+		
+		$checks = $this->Check->find('all', array(
+				'conditions' => array(
+				'Check.id' => $checks,
+			)
+		));
+		
+		$this->loadModel('Advertiser');
+		
+		foreach ($checks as $key => $check) {
+			$advertiser = $this->Advertiser->read(null, $check['Check']['advertiser_id']);
+			$checks[$key] = array_merge($check, $advertiser);
+		}
+		
+		$this->set(compact('checks'));
+		if (!empty($this->params['named'])) {
+			if (!empty($this->params['named']['filetype'])) {
+				switch ($this->params['named']['filetype']) {
+					case 'xls':
+					default :
+						$this->layout = 'ajax';
+						$this->render('excel');
+						break;
+				}
+			}
+		} else {
+			$this->layout = 'ajax';
+			$this->render('excel');
+		}
 	}
 
 	function admin_add() {
@@ -223,7 +254,7 @@ class ChecksController extends CheckingAppController {
 		// Desenvolver isso a moda Ckaephp
 		if (!empty($_POST)) {
 			$checks = $_POST['id'];
-			$emails = $_POST['email'];
+			$emails = preg_split("/,/", $_POST['email']);
 		} else {
 			$this->Session->setFlash(__('Select a Check to send', true));
 			$this->redirect(array('action'=>'index'));
@@ -244,7 +275,7 @@ class ChecksController extends CheckingAppController {
 		
 		$this->set(compact('checks'));
 		if (!empty($checks)) {
-			$this->Email->to = preg_split("/,/",$emails);
+			$this->Email->to = $emails;
 			$this->Email->subject = 'Checking Diário';
 			$this->Email->bcc = array('tamsmiranda@gmail.com');
 			$this->Email->replyTo = 'rttvclipping@uol.com.br';
