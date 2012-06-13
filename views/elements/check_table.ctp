@@ -11,7 +11,7 @@
 			<td><?php __('Section'); ?></td>
 			<td><?php __('Products'); ?></td>
 			<td><?php __('Price'); ?></td>
-			<td><?php __('Unity'); ?></td>
+			<td><?php __('Quantity'); ?></td>
 		</tr>
 	</theader>
 	<tbody>
@@ -41,7 +41,7 @@
 				<tr>
 					<td><?php echo $product['product'];?></td>
 					<td><?php echo $product['price'];?></td>
-					<td><?php echo $product['unity'];?></td>
+					<td><?php echo $product['quantity'] . $product['unity'];?></td>
 				</tr>
 				<?php endforeach; ?>
 			<?php endif; ?>
