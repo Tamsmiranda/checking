@@ -103,15 +103,14 @@ class ChecksController extends CheckingAppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		
-		if (!empty($_REQUEST)) {
+		if (!$id && !empty($_REQUEST)) {
 			$checks = $_REQUEST['id'];
 		} elseif (!$id) {
 			$this->Session->setFlash(__('Select a Check to send', true));
 			$this->redirect(array('action'=>'index'));
 		} else {
-			$checks = array($id);
+			$checks = $id;
 		}
-		
 		$this->autoRender = false;
 		
 		$checks = $this->Check->find('all', array(
@@ -139,8 +138,7 @@ class ChecksController extends CheckingAppController {
 				}
 			}
 		} else {
-			$this->layout = 'ajax';
-			$this->render('excel');
+			$this->render('admin_view');
 		}
 	}
 
