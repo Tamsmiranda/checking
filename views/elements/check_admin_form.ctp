@@ -89,7 +89,7 @@
 	?>
 		<div id="jsonDiv">
 	<?php
-		$units = array('kg', 'gr', 'lt', 'mt');
+		$units = array('kg' => 'kg', 'gr' => 'gr', 'lt' => 'lt', 'ml' => 'ml', 'cm' => 'cm', 'mt => 'mt');
 		if (isset($this->data)) {
 			if (isset($this->data['Json'])) {
 				$elementCount = 0;
