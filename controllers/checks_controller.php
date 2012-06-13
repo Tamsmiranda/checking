@@ -3,6 +3,7 @@ class ChecksController extends CheckingAppController {
 
 	var $name = 'Checks';
 	var $components = array('Email');
+	var $helpers = array('Checking.Preview');
 	var $paginate = array(
 		'limit' => 100,
 	);
