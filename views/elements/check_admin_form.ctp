@@ -87,6 +87,8 @@
 		echo $this->Form->input('expiration_date', array('dateFormat' => 'DMY', 'timeFormat' => '24'));
 		echo $this->Form->input('location', array('empty'=>__('Select', true)));
 	?>
+	<div id="mainJson">
+		<label for="CheckProducts"><?php echo __('Products', true);?></label>
 		<div id="jsonDiv">
 	<?php
 		$units = array('kg' => 'kg', 'gr' => 'gr', 'lt' => 'lt', 'ml' => 'ml', 'cm' => 'cm', 'mt' => 'mt');
@@ -94,17 +96,17 @@
 			if (isset($this->data['Json'])) {
 				$elementCount = 0;
 				foreach ($this->data['Json'] as $json ) {
-					echo $this->Form->input('Json.' . $elementCount . '.product');
-					echo $this->Form->input('Json.' . $elementCount . '.price');
-					echo $this->Form->input('Json.' . $elementCount . '.quantity');
+					echo $this->Form->input('Json.' . $elementCount . '.product',array('label' => false,'div' => false,'placeholder' => __('Product', true)));
+					echo $this->Form->input('Json.' . $elementCount . '.price', array('label' => false,'div' => false,'placeholder' => __('Price', true)));
+					echo $this->Form->input('Json.' . $elementCount . '.quantity', array('label' => false,'div' => false,'placeholder' => __('Quantity', true)));
 					echo $this->Form->select('Json.' . $elementCount . '.unity', $units);
 					$elementCount += 1;
 				}
 			}
 		} else {
-			echo $this->Form->input('Json.0.product');
-			echo $this->Form->input('Json.0.price');
-			echo $this->Form->input('Json.0.quantity');
+			echo $this->Form->input('Json.0.product', array('label' => false,'div' => false,'placeholder' => __('Product', true)));
+			echo $this->Form->input('Json.0.price', array('label' => false,'div' => false,'placeholder' => __('Price', true)));
+			echo $this->Form->input('Json.0.quantity', array('label' => false,'div' => false,'placeholder' => __('Quantity', true)));
 			echo $this->Form->select('Json.0.unity', $units);
 		}
 	?>
@@ -136,9 +138,11 @@
 		});
 		</script>
 		</div>
+		</div>
 	<?php
 		echo $this->Html->link('', '', array('name' => 'jsonForm'));
 		echo $this->Form->button(__('Add', true),array('id' => 'jsonAdd', 'type' => 'button'));
+		echo $this->Form->input('id',array('type'=>'hidden'));
 		echo $this->Form->input('resume', array('type'=>'hidden'));
 		echo $this->Form->input('content', array('type'=>'hidden'));
 		echo $this->Form->input('observation', array('type'=>'hidden'));
