@@ -8,8 +8,7 @@
 	<?php 
 		foreach ($checks as $check) {
 			if ($check['Check']['file']) {
-				$this->Html->url('/',true) . 'files/checks/' . $check['Check']['file'];
-				echo $this->Preview->size($check['Check']['file'],240,180);
+				echo $this->Preview->size($this->Html->url('/',true) . 'files/checks/' . $check['Check']['file'],240,180);
 			}
 		}
 		 ?>
