@@ -290,7 +290,7 @@ class ChecksController extends CheckingAppController {
 					);
 			$this->Email->delivery = 'smtp';
 				
-			$this->Email->delivery = 'debug';
+			//$this->Email->delivery = 'debug';
 			if ( $this->Email->send() ) {
 				$this->Session->setFlash(__('Mail send sucessfull',true));
 			} else {
