@@ -16,7 +16,7 @@
 	</theader>
 	<tbody>
 		<?php foreach ($checks as $check) : ?>
-			<?php $rows = (count($check['Json']) + 1);?>
+			<?php $rows = (count($check['Json']) );?>
 			<tr>
 				<td rowspan="<?php echo $rows;?>"><?php echo date('G:i d-m-Y',strtotime($check['Check']['publish_date']));?>&nbsp;</td>
 				<td rowspan="<?php echo $rows;?>"><?php echo date('d-m-Y',strtotime($check['Check']['expiration_date']));?>&nbsp;</td>
