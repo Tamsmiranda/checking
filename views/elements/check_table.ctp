@@ -31,9 +31,15 @@
 				<td> - </td>
 				<td> - </td>
 				<?php else : ?>
-				<td></td>
-				<td></td>
-				<td></td>
+				<?php
+					if (is_array($check['Json'])) {
+						$product = $check['Json'][0];
+						unset($check['Json'][0]);
+					}
+				?>
+				<td><?php echo $product['product'];?></td>
+				<td><?php echo $product['price'];?></td>
+				<td><?php echo $product['quantity'] . $product['unity'];?></td>
 				<?php endif; ?>
 			</tr>
 			<?php if ($rows > 0) : ?>
