@@ -58,6 +58,7 @@ class ChecksController extends CheckingAppController {
 		$this->loadModel('Advertiser');
 		
 		foreach ($checks as $key => $check) {
+			$advertiser = array();
 			$advertiser = $this->Advertiser->read(null, $check['Check']['advertiser_id']);
 			$checks[$key] = array_merge($check, $advertiser);
 		}
@@ -180,6 +181,7 @@ class ChecksController extends CheckingAppController {
 		$this->loadModel('Advertiser');
 		
 		foreach ($checks as $key => $check) {
+			$advertiser = array();
 			$advertiser = $this->Advertiser->read(null, $check['Check']['advertiser_id']);
 			$checks[$key] = array_merge($check, $advertiser);
 		}
