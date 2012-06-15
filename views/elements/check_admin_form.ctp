@@ -91,7 +91,7 @@
 		<label for="CheckProducts"><?php echo __('Products', true);?></label>
 		<div id="jsonDiv">
 	<?php
-		$units = array('kg' => 'kg', 'gr' => 'gr', 'lt' => 'lt', 'ml' => 'ml', 'cm' => 'cm', 'mt' => 'mt');
+		$units = array('kg' => 'kg', 'gr' => 'gr', 'lt' => 'lt', 'ml' => 'ml', 'uni' => 'uni', 'mt' => 'mt');
 		if (isset($this->data)) {
 			if (isset($this->data['Json'])) {
 				$elementCount = 0;
@@ -121,18 +121,22 @@
 					$('#' + newElement + ' [for="Json0Product"]').attr('for','Json' + productCount + 'Product');
 					$('#' + newElement + ' #Json0Product')
 						.attr('id','Json' + productCount + 'Product')
-						.attr('name', 'data[Json][' + productCount + '][product]');
+						.attr('name', 'data[Json][' + productCount + '][product]')
+						.attr('value', '');
 					$('#' + newElement + ' [for="Json0Price"]').attr('for','Json' + productCount + 'Price');
 					$('#' + newElement + ' #Json0Price')
 						.attr('id','Json' + productCount + 'Price')
-						.attr('name', 'data[Json][' + productCount + '][price]');
+						.attr('name', 'data[Json][' + productCount + '][price]')
+						.attr('value', '');
 					$('#' + newElement + ' [for="Json0Quantity"]').attr('for','Json' + productCount + 'Quantity');
 					$('#' + newElement + ' #Json0Quantity')
 						.attr('id','Json' + productCount + 'Quantity')
-						.attr('name', 'data[Json][' + productCount + '][quantity]');
+						.attr('name', 'data[Json][' + productCount + '][quantity]')
+						.attr('value', '');
 					$('#' + newElement + ' #Json0Unity')
 						.attr('id','Json' + productCount + 'Unity')
-						.attr('name', 'data[Json][' + productCount + '][unity]');
+						.attr('name', 'data[Json][' + productCount + '][unity]')
+						.attr('value', '');
 				}
 			);
 		});
