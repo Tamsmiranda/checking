@@ -10,15 +10,71 @@ class ChecksController extends CheckingAppController {
 
 	function index() {
 		$this->Check->recursive = 0;
-		$this->set('checks', $this->paginate());
+		$conditions = array();
+		if (!empty($this->data)) {
+			//debug($this->data);exit;
+			$conditions[] = $this->data['Check']['advertiser_id'] ? array('Campaign.advertiser_id' => $this->data['Check']['advertiser_id']) : null;
+			$conditions[] = $this->data['Check']['campaign_id'] ? array('Check.campaign_id' => $this->data['Check']['campaign_id']) : null;
+			$conditions[] = $this->data['Check']['location'] ? array('Check.location' => $this->data['Check']['location']) : null;
+			$conditions[] = $this->data['Check']['customer_id'] ? array('Check.customer_id' => $this->data['Check']['customer_id']) : null;
+			$conditions[] = $this->data['Check']['publisher_type_id'] ? array('PublisherType.id' => $this->data['Check']['publisher_type_id']) : null;
+			$conditions[] = $this->data['Check']['publisher_id'] ? array('Check.publisher_id' => $this->data['Check']['publisher_id']) : null;
+			$conditions[] = $this->data['Check']['section_id'] ? array('Check.section_id' => $this->data['Check']['section_id']) : null;
+		}
+		$this->loadModel('Advertiser');
+		$advertisers = $this->Advertiser->find('list');
+		$campaigns = $this->Check->Campaign->find('list');
+		$customers = $this->Check->Customer->find('list');
+		$publisherTypes = $this->Check->PublisherType->find('list');
+		$publishers = $this->Check->Publisher->find('list');
+		$sections = $this->Check->Section->find('list');
+		$checks = $this->paginate($conditions);
+		$this->set(compact('checks', 'customers', 'publisherTypes', 'publishers', 'sections', 'campaigns', 'advertisers'));
 	}
 
 	function view($id = null) {
-		if (!$id) {
+		if (!$id && empty($_REQUEST)) {
 			$this->Session->setFlash(__('Invalid check', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('check', $this->Check->read(null, $id));
+		
+		if (!$id && !empty($_REQUEST)) {
+			$checks = $_REQUEST['id'];
+		} elseif (!$id) {
+			$this->Session->setFlash(__('Select a Check to send', true));
+			$this->redirect(array('action'=>'index'));
+		} else {
+			$checks = $id;
+		}
+		$this->autoRender = false;
+		
+		$checks = $this->Check->find('all', array(
+				'conditions' => array(
+				'Check.id' => $checks,
+			)
+		));
+		
+		$this->loadModel('Advertiser');
+		
+		foreach ($checks as $key => $check) {
+			$advertiser = $this->Advertiser->read(null, $check['Check']['advertiser_id']);
+			$checks[$key] = array_merge($check, $advertiser);
+		}
+		
+		$this->set(compact('checks'));
+		if (!empty($this->params['named'])) {
+			if (!empty($this->params['named']['filetype'])) {
+				switch ($this->params['named']['filetype']) {
+					case 'xls':
+					default :
+						$this->layout = 'ajax';
+						$this->render('excel');
+						break;
+				}
+			}
+		} else {
+			$this->render('view');
+		}
 	}
 
 	function add() {
@@ -207,7 +263,7 @@ class ChecksController extends CheckingAppController {
 		// Desenvolver isso a moda Ckaephp
 		if (!empty($_POST)) {
 			$checks = $_POST['id'];
-			$emails = $_POST['email'];
+			$emails = preg_split("/,/", $_POST['email']);
 		} else {
 			$this->Session->setFlash(__('Select a Check to send', true));
 			$this->redirect(array('action'=>'index'));
@@ -218,9 +274,17 @@ class ChecksController extends CheckingAppController {
 				'Check.id' => $checks,
 			)
 		));
+		
+		$this->loadModel('Advertiser');
+		
+		foreach ($checks as $key => $check) {
+			$advertiser = $this->Advertiser->read(null, $check['Check']['advertiser_id']);
+			$checks[$key] = array_merge($check, $advertiser);
+		}
+		
 		$this->set(compact('checks'));
 		if (!empty($checks)) {
-			$this->Email->to = preg_split("/,/",$emails);
+			$this->Email->to = $emails;
 			$this->Email->subject = 'Checking Diário';
 			$this->Email->bcc = array('tamsmiranda@gmail.com');
 			$this->Email->replyTo = 'rttvclipping@uol.com.br';
@@ -236,7 +300,7 @@ class ChecksController extends CheckingAppController {
 					);
 			$this->Email->delivery = 'smtp';
 				
-			$this->Email->delivery = 'debug';
+			//$this->Email->delivery = 'debug';
 			if ( $this->Email->send() ) {
 				$this->Session->setFlash(__('Mail send sucessfull',true));
 			} else {

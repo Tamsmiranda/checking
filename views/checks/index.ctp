@@ -1,8 +1,8 @@
-<div class="checks index">
+﻿<div class="checks index">
 	<h2><?php __('Checks');?></h2>
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Check', true), array('action' => 'add')); ?></li>
+			<li><?php echo $this->Html->link(__('Send by E-mail', true), '#emailForm', array('id' => 'send')); ?></li>
 			<li><?php echo $this->Html->link(__('Export to Excel', true), '#', array('id' => 'excel')); ?></li>
 			<li><?php echo $this->Html->link(__('Export to PDF', true), '#', array('id' => 'pdf')); ?></li>
 		</ul>
@@ -39,7 +39,7 @@
 		<td>
 			<?php echo $check['Section']['name']; ?>
 		</td>
-		<td><?php echo date('G:i d-m-Y',strtotime($check['Check']['publish_date']));?>&nbsp;</td>
+		<td><?php echo date('d-m-Y',strtotime($check['Check']['publish_date']));?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $check['Check']['id'])); ?>
 		</td>
@@ -48,7 +48,6 @@
 	</table>
 	<div class="paging"><?php echo $paginator->numbers(); ?></div>
 	<div class="counter"><?php echo $paginator->counter(array('format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true))); ?></div>
-	</div>
 </div>
 <script>
 		function selectedChecks() {
@@ -71,14 +70,33 @@
 					this.checked = checked_status;
 				});
 			});
+			$( "#dialogEmail" ).dialog({
+				modal: true,
+				autoOpen: false,
+				buttons: {
+					Ok: function() {
+						$.post("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'send'));?>", { id: selectedChecks(), email: $('#email').val() }, function () { window.location.replace("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'index'));?>");});
+						$( this ).dialog( "close" );
+					},
+					Cancel: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		});
+		
+		$('#send').click(function(){
+			$("#dialogEmail").dialog('open');
 		});
 		
 		// Export to excel
+		/*$('#excel').click(function(){
+			$.post("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'view'));?>", { id: selectedChecks()});
+		});*/
+		// Export to excel
 		$('#excel').click( function(){
 			params = $.param({ id : selectedChecks()});
-			window.location.replace("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'view'));?>?" + params);
+			window.location.replace("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'view'));?>/filetype:xls/?" + params);
 		});
 
-</script>
-<div class="clear"></div>
-
+</script>	
