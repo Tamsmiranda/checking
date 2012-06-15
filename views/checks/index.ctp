@@ -1,4 +1,4 @@
-﻿<?php echo $this->element('admin_search_form'); ?>
+﻿<?php //echo $this->element('admin_search_form'); ?>
 <div id="dialogEmail" title="<?php echo __('Send by E-mail', true);?>">
 	<?php echo $this->Form->input('email',array('class'=>'text ui-widget-content ui-corner-all', 'id' => 'email'));?>
 	<a href="#emailForm"></a>
