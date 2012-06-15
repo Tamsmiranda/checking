@@ -11,6 +11,7 @@ class ChecksController extends CheckingAppController {
 	function index() {
 		$this->Check->recursive = 0;
 		$conditions = array();
+		$conditions[] = array('Customer.user_id' => $this->Auth->user('id'));
 		if (!empty($this->data)) {
 			//debug($this->data);exit;
 			$conditions[] = $this->data['Check']['advertiser_id'] ? array('Campaign.advertiser_id' => $this->data['Check']['advertiser_id']) : null;
