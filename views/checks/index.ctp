@@ -1,4 +1,9 @@
-﻿<div class="checks index">
+﻿<?php echo $this->element('admin_search_form'); ?>
+<div id="dialogEmail" title="<?php echo __('Send by E-mail', true);?>">
+	<?php echo $this->Form->input('email',array('class'=>'text ui-widget-content ui-corner-all', 'id' => 'email'));?>
+	<a href="#emailForm"></a>
+</div>
+<div class="checks index">
 	<h2><?php __('Checks');?></h2>
 	<div class="actions">
 		<ul>
@@ -75,7 +80,7 @@
 				autoOpen: false,
 				buttons: {
 					Ok: function() {
-						$.post("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'send'));?>", { id: selectedChecks(), email: $('#email').val() }, function () { window.location.replace("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'index'));?>");});
+						$.post("<?php echo $this->Html->url(array('admin' => false, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'send'));?>", { id: selectedChecks(), email: $('#email').val() }, function () { window.location.replace("<?php echo $this->Html->url(array('admin' => true, 'plugin' => 'checking', 'controller' => 'checks', 'action' => 'index'));?>");});
 						$( this ).dialog( "close" );
 					},
 					Cancel: function() {
