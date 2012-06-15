@@ -162,6 +162,7 @@
 			//Adicionar preview
 			//echo $this->Html->image($this->Html->url('/',true) . 'files/advertisers/logos/' . $this->data['Advertiser']['logo']);
 		}
+		echo $this->Form->input('lenght', array('label' => 'Duração'));
 		echo $this->Form->input('file', array('type' => 'file'));
 		echo $this->Form->input('dir', array('type' => 'hidden'));
 		echo $this->Form->input('mimetype', array('type' => 'hidden'));
