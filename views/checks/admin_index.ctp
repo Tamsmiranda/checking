@@ -45,7 +45,7 @@
 		<td>
 			<?php echo $check['Section']['name']; ?>
 		</td>
-		<td><?php echo date('G:i d-m-Y',strtotime($check['Check']['publish_date']));?>&nbsp;</td>
+		<td><?php echo date('d-m-Y',strtotime($check['Check']['publish_date']));?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $check['Check']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $check['Check']['id'])); ?>

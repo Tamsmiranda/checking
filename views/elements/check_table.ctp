@@ -18,7 +18,7 @@
 		<?php foreach ($checks as $check) : ?>
 			<?php $rows = (count($check['Json']) );?>
 			<tr>
-				<td rowspan="<?php echo $rows;?>"><?php echo date('G:i d-m-Y',strtotime($check['Check']['publish_date']));?>&nbsp;</td>
+				<td rowspan="<?php echo $rows;?>"><?php echo date('d-m-Y',strtotime($check['Check']['publish_date']));?>&nbsp;</td>
 				<td rowspan="<?php echo $rows;?>"><?php echo date('d-m-Y',strtotime($check['Check']['expiration_date']));?>&nbsp;</td>
 				<td rowspan="<?php echo $rows;?>"><?php echo $check['Customer']['name']; ?>&nbsp;</td>
 				<td rowspan="<?php echo $rows;?>"><?php echo $check['Advertiser']['name']; ?>&nbsp;</td>
