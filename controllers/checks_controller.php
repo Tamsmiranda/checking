@@ -10,8 +10,13 @@ class ChecksController extends CheckingAppController {
 
 	function index() {
 		$this->Check->recursive = 0;
+		$this->paginate = array(
+			'Check' => array(
+				'order' =>array('Check.publish_date'=>'desc', 'Check.created'=>'desc'),
+			),
+		);
 		$conditions = array();
-		$conditions[] = array('Customer.user_id' => $this->Auth->user('id'));
+		//$conditions[] = array('Customer.user_id' => $this->Auth->user('id'));
 		if (!empty($this->data)) {
 			//debug($this->data);exit;
 			$conditions[] = $this->data['Check']['advertiser_id'] ? array('Campaign.advertiser_id' => $this->data['Check']['advertiser_id']) : null;
@@ -134,6 +139,11 @@ class ChecksController extends CheckingAppController {
 	
 	function admin_index() {
 		$this->Check->recursive = 0;
+		$this->paginate = array(
+			'Check' => array(
+				'order' =>array('Check.publish_date'=>'desc', 'Check.created'=>'desc'),
+			),
+		);
 		$conditions = array();
 		if (!empty($this->data)) {
 			//debug($this->data);exit;
