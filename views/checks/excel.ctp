@@ -4,5 +4,5 @@
 	header('Content-Disposition: attachment; filename="checking.xls"');
 	header('Content-Transfer-Encoding: binary');
 ?>
-<?php echo $this->element('check_table'); ?>
+<?php echo $this->element('check_table_embed'); ?>
 <!-- end XLS -->
