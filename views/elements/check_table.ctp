@@ -1,23 +1,30 @@
-﻿<table>
+﻿<table cellspacing="0" cellpadding="0">
 	<theader>
 		<tr>
-			<td><?php __('Publish Date'); ?></td>
-			<td><?php __('Expiration Date'); ?></td>
-			<td><?php __('Customer'); ?></td>
-			<td><?php __('Advertiser'); ?></td>
-			<td><?php __('Campaign'); ?></td>
-			<td><?php __('Publisher Type'); ?></td>
-			<td><?php __('Publisher'); ?></td>
-			<td><?php __('Section'); ?></td>
-			<td><?php __('Products'); ?></td>
-			<td><?php __('Price'); ?></td>
-			<td><?php __('Quantity'); ?></td>
+			<th><?php __('Publish Date'); ?></th>
+			<th><?php __('Expiration Date'); ?></th>
+			<th><?php __('Customer'); ?></th>
+			<th><?php __('Advertiser'); ?></th>
+			<th><?php __('Campaign'); ?></th>
+			<th><?php __('Publisher Type'); ?></th>
+			<th><?php __('Publisher'); ?></th>
+			<th><?php __('Section'); ?></th>
+			<th><?php __('Products'); ?></th>
+			<th><?php __('Price'); ?></th>
+			<th><?php __('Quantity'); ?></th>
 		</tr>
 	</theader>
 	<tbody>
+		<?php $i = 0; ?>
 		<?php foreach ($checks as $check) : ?>
+		<?php
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
 			<?php $rows = (count($check['Json']) );?>
-			<tr>
+			<tr<?php echo $class;?>>
 				<td rowspan="<?php echo $rows;?>"><?php echo date('d-m-Y',strtotime($check['Check']['publish_date']));?>&nbsp;</td>
 				<td rowspan="<?php echo $rows;?>"><?php echo date('d-m-Y',strtotime($check['Check']['expiration_date']));?>&nbsp;</td>
 				<td rowspan="<?php echo $rows;?>"><?php echo $check['Customer']['name']; ?>&nbsp;</td>
