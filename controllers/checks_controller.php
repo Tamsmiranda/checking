@@ -22,7 +22,7 @@ class ChecksController extends CheckingAppController {
 			$conditions[] = $this->data['Check']['advertiser_id'] ? array('Campaign.advertiser_id' => $this->data['Check']['advertiser_id']) : null;
 			$conditions[] = $this->data['Check']['campaign_id'] ? array('Check.campaign_id' => $this->data['Check']['campaign_id']) : null;
 			$conditions[] = $this->data['Check']['location'] ? array('Check.location' => $this->data['Check']['location']) : null;
-			$conditions[] = $this->data['Check']['customer_id'] ? array('Check.customer_id' => $this->data['Check']['customer_id']) : null;
+			//$conditions[] = $this->data['Check']['customer_id'] ? array('Check.customer_id' => $this->data['Check']['customer_id']) : null;
 			$conditions[] = $this->data['Check']['publisher_type_id'] ? array('PublisherType.id' => $this->data['Check']['publisher_type_id']) : null;
 			$conditions[] = $this->data['Check']['publisher_id'] ? array('Check.publisher_id' => $this->data['Check']['publisher_id']) : null;
 			$conditions[] = $this->data['Check']['section_id'] ? array('Check.section_id' => $this->data['Check']['section_id']) : null;
