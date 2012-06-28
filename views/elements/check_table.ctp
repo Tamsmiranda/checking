@@ -23,7 +23,13 @@
 				$class = ' class="altrow"';
 			}
 		?>
-			<?php $rows = (count($check['Json']) );?>
+			<?php
+				if (isset($check['Json'])) {
+					$rows = (count($check['Json']) );
+				} else {
+					$rows = 0;
+				}
+			?>
 			<tr<?php echo $class;?>>
 				<td rowspan="<?php echo $rows;?>"><?php echo date('d-m-Y',strtotime($check['Check']['publish_date']));?>&nbsp;</td>
 				<td rowspan="<?php echo $rows;?>"><?php echo date('d-m-Y',strtotime($check['Check']['expiration_date']));?>&nbsp;</td>
