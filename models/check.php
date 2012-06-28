@@ -80,7 +80,7 @@ class Check extends CheckingAppModel {
 					$results[$key]['Json'][] = (array) $json;
 				}
 			} else {
-				$results[$key]['Json'] = array();
+				$results[$key]['Json'][] = array();
 			}
 		}
 		return $results;
