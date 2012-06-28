@@ -79,6 +79,8 @@ class Check extends CheckingAppModel {
 				foreach (json_decode($val['Check']['params']) as $json) {
 					$results[$key]['Json'][] = (array) $json;
 				}
+			} else {
+				$results[$key]['Json'] = array();
 			}
 		}
 		return $results;
