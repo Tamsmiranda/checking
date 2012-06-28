@@ -42,7 +42,7 @@
 					case 'mpeg':
 					?>
 						<a class="player" href="<?php echo $file; ?>">
-							<img src="<?php $this->webroot . 'img/flow_eye.jpg';?>" alt="Player" />
+							<img src="<?php echo $this->webroot . 'img/flow_eye.jpg';?>" alt="Player" />
 						</a>
 						<script src="<?php echo $this->webroot;?>js/flowplayer-3.2.6.min.js"></script>
 						<script>
