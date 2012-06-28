@@ -41,9 +41,11 @@
 					case 'flv':
 					case 'mpeg':
 					?>
-						<a class="player" href="<?php echo $file; ?>">
-							<img src="<?php echo $this->webroot . 'img/flow_eye.jpg';?>" alt="Player" />
-						</a>
+						<div class = "preview player">
+							<a class="player" href="<?php echo $file; ?>">
+								<img src="<?php echo $this->webroot . 'img/flow_eye.jpg';?>" alt="Player" />
+							</a>
+						</div>
 						<script src="<?php echo $this->webroot;?>js/flowplayer-3.2.6.min.js"></script>
 						<script>
 							flowplayer("a.player", "<?php echo $this->webroot;?>swf/flowplayer-3.2.7.swf");
