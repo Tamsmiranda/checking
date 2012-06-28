@@ -16,5 +16,7 @@
 </div>
 <script src="<?php echo $this->webroot;?>js/flowplayer-3.2.6.min.js"></script>
 <script>
-	flowplayer("a.player", "<?php echo $this->webroot;?>swf/flowplayer-3.2.7.swf");
+	$(document).ready(function() {
+		flowplayer("a.player", "<?php echo $this->webroot;?>swf/flowplayer-3.2.7.swf");
+	});
 </script>
